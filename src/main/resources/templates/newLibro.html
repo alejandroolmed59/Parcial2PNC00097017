@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .center {
+            margin: auto;
+            width: 60%;
+            border: 3px solid #73AD21;
+            padding: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<div class="center">
+    <h1>Ingresar un Libro</h1>
+
+    <form th:action="@{/newLibro}" th:object="${libro}" method="post">
+        <div class="form-group">
+            <label>Titulo:</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" th:field="*{s_titulo}">
+            </div>
+            <span th:errors="*{s_titulo}" style=color:#FF0000></span><br>
+        </div>
+        <div class="form-group">
+            <label>Autor:</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" th:field="*{s_autor}">
+            </div>
+            <span th:errors="*{s_autor}" style=color:#FF0000></span><br>
+        </div>
+        <div class="form-group">
+            <label>ISBN:</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" th:field="*{s_isbn}">
+            </div>
+            <span th:errors="*{s_isbn}" style=color:#FF0000></span><br>
+        </div>
+        <label>Categoria</label>
+        <select class="form-control" th:field="*{categoria.c_categoria}"  id="dropOperator">
+            <option th:each="cate : ${categoriaList}" th:value="${cate.c_categoria}" th:text="${cate.s_categoria}"></option>
+        </select>
+        <label>Estado</label>
+        <input type="checkbox" th:field ="*{b_estado}" th:value="${false}">
+
+        <input type="submit"  class="btn btn-success" value="Guardar">
+    </form>
+    <br>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
